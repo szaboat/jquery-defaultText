@@ -1,5 +1,7 @@
 jQuery defaultText plugin by Weixi Yen
 
+jQuery 1.4+ support only (uses 'delegate' method)
+
 DESCRIPTION
 defaultText is a jQuery plugin that sets values to empty
 input fields.  It was built for code efficiency and minimal
