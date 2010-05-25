@@ -13,7 +13,7 @@
  * Project home:
  *   http://www.github.com/weixiyen/jquery-defaultText
  *
- * Version:  0.0.1
+ * Version:  0.1.0
  *
  * Features:
  *      Auto-clears default text on form submit, then resets default text after submission.
