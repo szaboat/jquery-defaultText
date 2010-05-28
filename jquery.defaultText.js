@@ -61,14 +61,33 @@
         $(selector).trigger('focusout');
         
         $.each(clear_events, function(i, event){
-            $(event.selector).bind(event.type, function(){
-                $(selector, this).each(function(){
-                    onFocus($(this));
-                });
-                setTimeout(function(){
-                    $(selector).trigger('focusout'); 
-                }, 1);
-            });
+            
+            var ele = $(event.selector),
+                len = ele.length;
+            
+            if (ele.size()) {
+                var ev_queue = $.data( ele.get(0), "events" );
+
+                if (ev_queue) {
+                    for (var x=0; x<len; x++) {
+                        ev_queue[event.type].unshift({
+                            type : 'click',
+                            guid : null,
+                            namespace : "",
+                            data : undefined,
+                            handler: function() {
+                                blink();
+                            }
+                        });
+                    }
+                } else {
+                    $(event.selector).bind(event.type, function(){
+                        blink();
+                    });
+                }
+                
+            } 
+            
         });
         
         function onFocus(ele) {
@@ -76,6 +95,15 @@
                 val = ele.val();
             ele.removeClass(css);
             if (title === val) ele.val('');
+        }
+        
+        function blink(){
+            $(selector).each(function(){
+                onFocus($(this));
+            });
+            setTimeout(function(){
+                $(selector).trigger('focusout'); 
+            }, 1);
         }
     }
 })(jQuery);
