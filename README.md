@@ -1,19 +1,25 @@
-jQuery defaultText plugin by Weixi Yen
+jQuery defaultText plugin 
+=========================
 
-**_jQuery 1.4+ support_** only (uses 'delegate' method)
+VERSION SUPPORT
+---------------
+**jQuery 1.4.2 or higher support** only (uses 'delegate' method)
 
-**DESCRIPTION**
+DESCRIPTION
+-----------
 defaultText is a jQuery plugin that sets values to empty
 input fields.  It was built for code efficiency and minimal
 DOM traversal.
 
-**WHY**
+WHY
+---
 Most defaultText implementations are not practical and
 require more DOM traversals than necessary.  This plugin
 focuses on speed and performance with event delegation options
 by providing an optional 'context' parameter.
 
-**USAGE:**
+USAGE
+-----
 Give your <input /> tags a title attribute.
 
 	<input type="text title="enter your username" />
