@@ -42,7 +42,7 @@
 (function($){
     $.defaultText = function(opts) {
         var selector = 'input:text[title]',
-            ctx = opts && opts.context ? opts.context : document,
+            ctx = opts && opts.context ? opts.context : 'body',
             css = opts && opts.css ? opts.css : 'default',
             form_clear = [{selector: 'form', type:'submit'}];
             clear_events = opts && opts.clearEvents ? form_clear.concat(opts.clearEvents) : form_clear;
@@ -62,7 +62,9 @@
         
         $.each(clear_events, function(i, event){
             
-            var ele = $(event.selector),
+            var sel = event.selector,
+                type = event.type,
+                ele = $(sel),
                 len = ele.length;
             
             if (ele.size()) {
@@ -70,8 +72,8 @@
 
                 if (ev_queue) {
                     for (var x=0; x<len; x++) {
-                        ev_queue[event.type].unshift({
-                            type : 'click',
+                        $.data( ele.get(x), "events" )[type].unshift({
+                            type : type,
                             guid : null,
                             namespace : "",
                             data : undefined,
@@ -81,7 +83,7 @@
                         });
                     }
                 } else {
-                    $(event.selector).bind(event.type, function(){
+                    ele.bind(type, function(){
                         blink();
                     });
                 }
