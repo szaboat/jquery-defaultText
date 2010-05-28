@@ -62,16 +62,15 @@
         
         $.each(clear_events, function(i, event){
             
-            var sel = event.selector,
-                type = event.type,
-                ele = $(sel),
+            var type = event.type,
+                ele = $(event.selector),
                 len = ele.length;
             
             if (ele.size()) {
                 var ev_queue = $.data( ele.get(0), "events" );
 
                 if (ev_queue) {
-                    for (var x=0; x<len; x++) {
+                    for (var x=0; x < len; x++) {
                         $.data( ele.get(x), "events" )[type].unshift({
                             type : type,
                             guid : null,
