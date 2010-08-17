@@ -41,7 +41,8 @@
  */
 (function($){
     $.defaultText = function(opts) {
-        var selector = 'input:text[title]',
+				
+        var selector = 'textarea[title], input:text[title]',
             ctx = opts && opts.context ? opts.context : 'body',
             css = opts && opts.css ? opts.css : 'default',
             form_clear = [{selector: 'form', type:'submit'}];
@@ -71,6 +72,7 @@
 
                 if (ev_queue) {
                     for (var x=0; x < len; x++) {
+												if($.data(ele.get(x), "events")[type] != undefined){
                         $.data( ele.get(x), "events" )[type].unshift({
                             type : type,
                             guid : null,
@@ -80,6 +82,7 @@
                                 blink();
                             }
                         });
+												}
                     }
                 } else {
                     ele.bind(type, function(){
